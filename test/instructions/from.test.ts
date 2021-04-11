@@ -448,19 +448,19 @@ describe("FROM", () => {
         assert.equal(from.getPlatformFlag(), null);
     });
 
-    it("FROM privateregistry.com/base/image", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com/base/image");
+    it("FROM private-registry.com/base/image", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com/base/image");
         let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com/base/image");
-        assertRange(from.getImageRange(), 0, 5, 0, 35);
+        assert.equal(from.getImage(), "private-registry.com/base/image");
+        assertRange(from.getImageRange(), 0, 5, 0, 36);
         assert.equal(from.getImageName(), "base/image");
-        assertRange(from.getImageNameRange(), 0, 25, 0, 35);
+        assertRange(from.getImageNameRange(), 0, 26, 0, 36);
         assert.equal(from.getImageTag(), null);
         assert.equal(from.getImageTagRange(), null);
         assert.equal(from.getImageDigest(), null);
         assert.equal(from.getImageDigestRange(), null);
-        assert.equal(from.getRegistry(), "privateregistry.com");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 24);
+        assert.equal(from.getRegistry(), "private-registry.com");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 25);
         assert.equal(from.getBuildStage(), null);
         assert.equal(from.getBuildStageRange(), null);
         assert.notEqual(from.getFlags(), null);
@@ -468,19 +468,19 @@ describe("FROM", () => {
         assert.equal(from.getPlatformFlag(), null);
     });
 
-    it("FROM privateregistry.com/base/image:", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com/base/image:");
+    it("FROM private-registry.com/base/image:", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com/base/image:");
         let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com/base/image:");
-        assertRange(from.getImageRange(), 0, 5, 0, 36);
+        assert.equal(from.getImage(), "private-registry.com/base/image:");
+        assertRange(from.getImageRange(), 0, 5, 0, 37);
         assert.equal(from.getImageName(), "base/image");
-        assertRange(from.getImageNameRange(), 0, 25, 0, 35);
+        assertRange(from.getImageNameRange(), 0, 26, 0, 36);
         assert.equal(from.getImageTag(), "");
-        assertRange(from.getImageTagRange(), 0, 36, 0, 36);
+        assertRange(from.getImageTagRange(), 0, 37, 0, 37);
         assert.equal(from.getImageDigest(), null);
         assert.equal(from.getImageDigestRange(), null);
-        assert.equal(from.getRegistry(), "privateregistry.com");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 24);
+        assert.equal(from.getRegistry(), "private-registry.com");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 25);
         assert.equal(from.getBuildStage(), null);
         assert.equal(from.getBuildStageRange(), null);
         assert.notEqual(from.getFlags(), null);
@@ -488,239 +488,19 @@ describe("FROM", () => {
         assert.equal(from.getPlatformFlag(), null);
     });
 
-    it("FROM privateregistry.com/base/image:tag", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com/base/image:tag");
+    it("FROM private-registry.com/base/image:tag", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com/base/image:tag");
         let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com/base/image:tag");
-        assertRange(from.getImageRange(), 0, 5, 0, 39);
-        assert.equal(from.getImageName(), "base/image");
-        assertRange(from.getImageNameRange(), 0, 25, 0, 35);
-        assert.equal(from.getImageTag(), "tag");
-        assertRange(from.getImageTagRange(), 0, 36, 0, 39);
-        assert.equal(from.getImageDigest(), null);
-        assert.equal(from.getImageDigestRange(), null);
-        assert.equal(from.getRegistry(), "privateregistry.com");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 24);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com/base/image@", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com/base/image@");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com/base/image@");
-        assertRange(from.getImageRange(), 0, 5, 0, 36);
-        assert.equal(from.getImageName(), "base/image");
-        assertRange(from.getImageNameRange(), 0, 25, 0, 35);
-        assert.equal(from.getImageTag(), null);
-        assert.equal(from.getImageTagRange(), null);
-        assert.equal(from.getImageDigest(), "");
-        assertRange(from.getImageDigestRange(), 0, 36, 0, 36);
-        assert.equal(from.getRegistry(), "privateregistry.com");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 24);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
-        assertRange(from.getImageRange(), 0, 5, 0, 107);
-        assert.equal(from.getImageName(), "base/image");
-        assertRange(from.getImageNameRange(), 0, 25, 0, 35);
-        assert.equal(from.getImageTag(), null);
-        assert.equal(from.getImageTagRange(), null);
-        assert.equal(from.getImageDigest(), "sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
-        assertRange(from.getImageDigestRange(), 0, 36, 0, 107);
-        assert.equal(from.getRegistry(), "privateregistry.com");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 24);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com:5000/image", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/image");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/image");
-        assertRange(from.getImageRange(), 0, 5, 0, 35);
-        assert.equal(from.getImageName(), "image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 35);
-        assert.equal(from.getImageTag(), null);
-        assert.equal(from.getImageTagRange(), null);
-        assert.equal(from.getImageDigest(), null);
-        assert.equal(from.getImageDigestRange(), null);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com:5000/image:", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/image:");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/image:");
-        assertRange(from.getImageRange(), 0, 5, 0, 36);
-        assert.equal(from.getImageName(), "image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 35);
-        assert.equal(from.getImageTag(), "");
-        assertRange(from.getImageTagRange(), 0, 36, 0, 36);
-        assert.equal(from.getImageDigest(), null);
-        assert.equal(from.getImageDigestRange(), null);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com:5000/image:tag", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/image:tag");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/image:tag");
-        assertRange(from.getImageRange(), 0, 5, 0, 39);
-        assert.equal(from.getImageName(), "image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 35);
-        assert.equal(from.getImageTag(), "tag");
-        assertRange(from.getImageTagRange(), 0, 36, 0, 39);
-        assert.equal(from.getImageDigest(), null);
-        assert.equal(from.getImageDigestRange(), null);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com:5000/image:tag", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/image:tag");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/image:tag");
-        assertRange(from.getImageRange(), 0, 5, 0, 39);
-        assert.equal(from.getImageName(), "image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 35);
-        assert.equal(from.getImageTag(), "tag");
-        assertRange(from.getImageTagRange(), 0, 36, 0, 39);
-        assert.equal(from.getImageDigest(), null);
-        assert.equal(from.getImageDigestRange(), null);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com:5000/image@", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/image@");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/image@");
-        assertRange(from.getImageRange(), 0, 5, 0, 36);
-        assert.equal(from.getImageName(), "image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 35);
-        assert.equal(from.getImageTag(), null);
-        assert.equal(from.getImageTagRange(), null);
-        assert.equal(from.getImageDigest(), "");
-        assertRange(from.getImageDigestRange(), 0, 36, 0, 36);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com:5000/image@", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
-        assertRange(from.getImageRange(), 0, 5, 0, 107);
-        assert.equal(from.getImageName(), "image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 35);
-        assert.equal(from.getImageTag(), null);
-        assert.equal(from.getImageTagRange(), null);
-        assert.equal(from.getImageDigest(), "sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
-        assertRange(from.getImageDigestRange(), 0, 36, 0, 107);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com:5000/base/image", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/base/image");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/base/image");
+        assert.equal(from.getImage(), "private-registry.com/base/image:tag");
         assertRange(from.getImageRange(), 0, 5, 0, 40);
         assert.equal(from.getImageName(), "base/image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 40);
-        assert.equal(from.getImageTag(), null);
-        assert.equal(from.getImageTagRange(), null);
-        assert.equal(from.getImageDigest(), null);
-        assert.equal(from.getImageDigestRange(), null);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com:5000/base/image:", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/base/image:");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/base/image:");
-        assertRange(from.getImageRange(), 0, 5, 0, 41);
-        assert.equal(from.getImageName(), "base/image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 40);
-        assert.equal(from.getImageTag(), "");
-        assertRange(from.getImageTagRange(), 0, 41, 0, 41);
-        assert.equal(from.getImageDigest(), null);
-        assert.equal(from.getImageDigestRange(), null);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
-        assert.equal(from.getBuildStage(), null);
-        assert.equal(from.getBuildStageRange(), null);
-        assert.notEqual(from.getFlags(), null);
-        assert.equal(from.getFlags().length, 0);
-        assert.equal(from.getPlatformFlag(), null);
-    });
-
-    it("FROM privateregistry.com:5000/base/image:tag", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/base/image:tag");
-        let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/base/image:tag");
-        assertRange(from.getImageRange(), 0, 5, 0, 44);
-        assert.equal(from.getImageName(), "base/image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 40);
+        assertRange(from.getImageNameRange(), 0, 26, 0, 36);
         assert.equal(from.getImageTag(), "tag");
-        assertRange(from.getImageTagRange(), 0, 41, 0, 44);
+        assertRange(from.getImageTagRange(), 0, 37, 0, 40);
         assert.equal(from.getImageDigest(), null);
         assert.equal(from.getImageDigestRange(), null);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
+        assert.equal(from.getRegistry(), "private-registry.com");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 25);
         assert.equal(from.getBuildStage(), null);
         assert.equal(from.getBuildStageRange(), null);
         assert.notEqual(from.getFlags(), null);
@@ -728,19 +508,19 @@ describe("FROM", () => {
         assert.equal(from.getPlatformFlag(), null);
     });
 
-    it("FROM privateregistry.com:5000/base/image@", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/base/image@");
+    it("FROM private-registry.com/base/image@", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com/base/image@");
         let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/base/image@");
-        assertRange(from.getImageRange(), 0, 5, 0, 41);
+        assert.equal(from.getImage(), "private-registry.com/base/image@");
+        assertRange(from.getImageRange(), 0, 5, 0, 37);
         assert.equal(from.getImageName(), "base/image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 40);
+        assertRange(from.getImageNameRange(), 0, 26, 0, 36);
         assert.equal(from.getImageTag(), null);
         assert.equal(from.getImageTagRange(), null);
         assert.equal(from.getImageDigest(), "");
-        assertRange(from.getImageDigestRange(), 0, 41, 0, 41);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
+        assertRange(from.getImageDigestRange(), 0, 37, 0, 37);
+        assert.equal(from.getRegistry(), "private-registry.com");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 25);
         assert.equal(from.getBuildStage(), null);
         assert.equal(from.getBuildStageRange(), null);
         assert.notEqual(from.getFlags(), null);
@@ -748,19 +528,239 @@ describe("FROM", () => {
         assert.equal(from.getPlatformFlag(), null);
     });
 
-    it("FROM privateregistry.com:5000/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700", () => {
-        let dockerfile = DockerfileParser.parse("FROM privateregistry.com:5000/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
+    it("FROM private-registry.com/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
         let from = dockerfile.getFROMs()[0];
-        assert.equal(from.getImage(), "privateregistry.com:5000/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
-        assertRange(from.getImageRange(), 0, 5, 0, 112);
+        assert.equal(from.getImage(), "private-registry.com/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
+        assertRange(from.getImageRange(), 0, 5, 0, 108);
         assert.equal(from.getImageName(), "base/image");
-        assertRange(from.getImageNameRange(), 0, 30, 0, 40);
+        assertRange(from.getImageNameRange(), 0, 26, 0, 36);
         assert.equal(from.getImageTag(), null);
         assert.equal(from.getImageTagRange(), null);
         assert.equal(from.getImageDigest(), "sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
-        assertRange(from.getImageDigestRange(), 0, 41, 0, 112);
-        assert.equal(from.getRegistry(), "privateregistry.com:5000");
-        assertRange(from.getRegistryRange(), 0, 5, 0, 29);
+        assertRange(from.getImageDigestRange(), 0, 37, 0, 108);
+        assert.equal(from.getRegistry(), "private-registry.com");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 25);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/image", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/image");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/image");
+        assertRange(from.getImageRange(), 0, 5, 0, 36);
+        assert.equal(from.getImageName(), "image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 36);
+        assert.equal(from.getImageTag(), null);
+        assert.equal(from.getImageTagRange(), null);
+        assert.equal(from.getImageDigest(), null);
+        assert.equal(from.getImageDigestRange(), null);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/image:", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/image:");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/image:");
+        assertRange(from.getImageRange(), 0, 5, 0, 37);
+        assert.equal(from.getImageName(), "image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 36);
+        assert.equal(from.getImageTag(), "");
+        assertRange(from.getImageTagRange(), 0, 37, 0, 37);
+        assert.equal(from.getImageDigest(), null);
+        assert.equal(from.getImageDigestRange(), null);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/image:tag", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/image:tag");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/image:tag");
+        assertRange(from.getImageRange(), 0, 5, 0, 40);
+        assert.equal(from.getImageName(), "image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 36);
+        assert.equal(from.getImageTag(), "tag");
+        assertRange(from.getImageTagRange(), 0, 37, 0, 40);
+        assert.equal(from.getImageDigest(), null);
+        assert.equal(from.getImageDigestRange(), null);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/image:tag", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/image:tag");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/image:tag");
+        assertRange(from.getImageRange(), 0, 5, 0, 40);
+        assert.equal(from.getImageName(), "image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 36);
+        assert.equal(from.getImageTag(), "tag");
+        assertRange(from.getImageTagRange(), 0, 37, 0, 40);
+        assert.equal(from.getImageDigest(), null);
+        assert.equal(from.getImageDigestRange(), null);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/image@", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/image@");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/image@");
+        assertRange(from.getImageRange(), 0, 5, 0, 37);
+        assert.equal(from.getImageName(), "image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 36);
+        assert.equal(from.getImageTag(), null);
+        assert.equal(from.getImageTagRange(), null);
+        assert.equal(from.getImageDigest(), "");
+        assertRange(from.getImageDigestRange(), 0, 37, 0, 37);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/image@", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
+        assertRange(from.getImageRange(), 0, 5, 0, 108);
+        assert.equal(from.getImageName(), "image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 36);
+        assert.equal(from.getImageTag(), null);
+        assert.equal(from.getImageTagRange(), null);
+        assert.equal(from.getImageDigest(), "sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
+        assertRange(from.getImageDigestRange(), 0, 37, 0, 108);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/base/image", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/base/image");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/base/image");
+        assertRange(from.getImageRange(), 0, 5, 0, 41);
+        assert.equal(from.getImageName(), "base/image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 41);
+        assert.equal(from.getImageTag(), null);
+        assert.equal(from.getImageTagRange(), null);
+        assert.equal(from.getImageDigest(), null);
+        assert.equal(from.getImageDigestRange(), null);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/base/image:", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/base/image:");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/base/image:");
+        assertRange(from.getImageRange(), 0, 5, 0, 42);
+        assert.equal(from.getImageName(), "base/image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 41);
+        assert.equal(from.getImageTag(), "");
+        assertRange(from.getImageTagRange(), 0, 42, 0, 42);
+        assert.equal(from.getImageDigest(), null);
+        assert.equal(from.getImageDigestRange(), null);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/base/image:tag", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/base/image:tag");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/base/image:tag");
+        assertRange(from.getImageRange(), 0, 5, 0, 45);
+        assert.equal(from.getImageName(), "base/image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 41);
+        assert.equal(from.getImageTag(), "tag");
+        assertRange(from.getImageTagRange(), 0, 42, 0, 45);
+        assert.equal(from.getImageDigest(), null);
+        assert.equal(from.getImageDigestRange(), null);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/base/image@", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/base/image@");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/base/image@");
+        assertRange(from.getImageRange(), 0, 5, 0, 42);
+        assert.equal(from.getImageName(), "base/image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 41);
+        assert.equal(from.getImageTag(), null);
+        assert.equal(from.getImageTagRange(), null);
+        assert.equal(from.getImageDigest(), "");
+        assertRange(from.getImageDigestRange(), 0, 42, 0, 42);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
+        assert.equal(from.getBuildStage(), null);
+        assert.equal(from.getBuildStageRange(), null);
+        assert.notEqual(from.getFlags(), null);
+        assert.equal(from.getFlags().length, 0);
+        assert.equal(from.getPlatformFlag(), null);
+    });
+
+    it("FROM private-registry.com:5000/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700", () => {
+        let dockerfile = DockerfileParser.parse("FROM private-registry.com:5000/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
+        let from = dockerfile.getFROMs()[0];
+        assert.equal(from.getImage(), "private-registry.com:5000/base/image@sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
+        assertRange(from.getImageRange(), 0, 5, 0, 113);
+        assert.equal(from.getImageName(), "base/image");
+        assertRange(from.getImageNameRange(), 0, 31, 0, 41);
+        assert.equal(from.getImageTag(), null);
+        assert.equal(from.getImageTagRange(), null);
+        assert.equal(from.getImageDigest(), "sha256:613685c22f65d01f2264bdd49b8a336488e14faf29f3ff9b6bf76a4da23c4700");
+        assertRange(from.getImageDigestRange(), 0, 42, 0, 113);
+        assert.equal(from.getRegistry(), "private-registry.com:5000");
+        assertRange(from.getRegistryRange(), 0, 5, 0, 30);
         assert.equal(from.getBuildStage(), null);
         assert.equal(from.getBuildStageRange(), null);
         assert.notEqual(from.getFlags(), null);
